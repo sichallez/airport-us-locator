@@ -1,44 +1,32 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
+import SearchBar from "../components/SearchBar";
+import { fetchAllAirportsFromJSON } from "../store";
 
 export default function Home() {
   const [data, setData] = useState([]);
+  const dispatch = useDispatch();
+
+  // console.log("DATADATADATA???", data);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await axios.get("/api/us-airports");
-      const dt = await res.data;
-      console.log("DATA:", dt);
-    };
-    fetchData();
+    // const fetchData = async () => {
+    //   const res = await axios.get("/api/us-airports");
+    //   const dt = await res.data;
+    //   console.log("DATA:", dt);
+    // };
+    // fetchData();
+    dispatch(fetchAllAirportsFromJSON());
   }, []);
 
   return (
     <div className={styles.container}>
-      <Box
-        sx={{
-          m: 10,
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <TextField
-          id="departure"
-          label="From"
-          variant="outlined"
-          sx={{ m: 5 }}
-        />
-        <TextField
-          id="destination"
-          label="To"
-          variant="outlined"
-          sx={{ m: 5 }}
-        />
-      </Box>
+      <SearchBar />
 
       {/* <footer className={styles.footer}>
         <a
