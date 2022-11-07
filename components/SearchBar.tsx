@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import { calcDistanceNautical } from "../utils";
 import MyGoogleMap from "./MyGoogleMap";
 import { InputAirport } from "../types";
+import { AnyArray } from "immer/dist/internal";
 
 const initialAirport: InputAirport = {
   name: "",
@@ -17,13 +18,13 @@ const initialAirport: InputAirport = {
 };
 
 function SearchBar() {
-  const airports = useSelector((state) => state);
+  const airports: any = useSelector((state) => state);
   //   const airportsNoduplicate = airports.filter(
   //     (airport, index) =>
   //       index === airports.findIndex((other) => airport.iata === other.iata)
   //   );
   const airportsNoduplicate = airports.slice(0, 20);
-  const airportList = airportsNoduplicate.map((airport) =>
+  const airportList = airportsNoduplicate.map((airport: any) =>
     airport.iata_code !== undefined
       ? `(${airport.iata_code}) ${airport.name}`
       : `(${airport.icao_code}) ${airport.name}`

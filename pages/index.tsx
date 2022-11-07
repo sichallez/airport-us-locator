@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { ThunkDispatch } from "redux-thunk";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
 import SearchBar from "../components/SearchBar";
-import { fetchAllAirportsFromJSON } from "../store";
+import { fetchAllAirportsFromJSON, AppDispatch } from "../store";
 import MyGoogleMap from "../components/MyGoogleMap";
+
+export const useAppDispatch = () => useDispatch<AppDispatch>();
 
 export default function Home() {
   const [data, setData] = useState([]);
-  const dispatch = useDispatch();
+  const dispatch: ThunkDispatch<{}, {}, any> = useDispatch();
+  // const dispatch = useAppDispatch();
 
   // console.log("DATADATADATA???", data);
 

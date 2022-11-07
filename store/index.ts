@@ -1,5 +1,12 @@
-import { createStore, applyMiddleware, AnyAction } from "redux";
-import thunkMiddleware from "redux-thunk";
+import {
+  createStore,
+  applyMiddleware,
+  AnyAction,
+  Dispatch,
+  Action,
+  ActionCreator,
+} from "redux";
+import thunkMiddleware, { ThunkAction, ThunkDispatch } from "redux-thunk";
 import { Store } from "@reduxjs/toolkit";
 import { MakeStore, createWrapper, Context } from "next-redux-wrapper";
 
@@ -19,7 +26,7 @@ const _fetchAllAirports = (airports: any[]) => {
 
 /* Thunk */
 export const fetchAllAirports = () => {
-  return async (dispatch: AnyAction) => {
+  return async (dispatch: Dispatch<AnyAction>) => {
     const response = await axios.get("/api/us-airports");
     const airports = await response.data.data.response;
     console.log("STORE STORE STORE:", airports);
@@ -27,12 +34,17 @@ export const fetchAllAirports = () => {
   };
 };
 
-export const fetchAllAirportsFromJSON = () => {
-  return async (dispatch: AnyAction) => {
+export const fetchAllAirportsFromJSON = (): ThunkAction<
+  Promise<void>,
+  {},
+  {},
+  AnyAction
+> => {
+  return async (dispatch: ThunkDispatch<{}, {}, AnyAction>): Promise<void> => {
     const response = await axios.get("/api/staticdata");
     const airports = await JSON.parse(response.data).data.response;
     // console.log("STORE STORE STORE:", airports);
-    dispatch(_fetchAllAirports(airports));
+    dispatch<any>(_fetchAllAirports(airports));
   };
 };
 
@@ -48,5 +60,7 @@ const reducer = (state = initialState, action: AnyAction) => {
 const store = createStore(reducer, applyMiddleware(thunkMiddleware));
 const makeStore = (context: Context) => store;
 const wrapper = createWrapper(makeStore, { debug: true });
+
+export type AppDispatch = typeof store.dispatch;
 
 export default wrapper;
