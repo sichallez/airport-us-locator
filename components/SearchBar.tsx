@@ -6,6 +6,7 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import Typography from "@mui/material/Typography";
 import { calcDistanceNautical } from "../utils";
+import MyGoogleMap from "./MyGoogleMap";
 
 const initialAirport = {
   name: "",
@@ -75,10 +76,6 @@ function SearchBar() {
     }
   };
 
-  //   if (!airportList.length) {
-  //     return null;
-  //   }
-
   return (
     <>
       <Stack direction="row" spacing={2}>
@@ -104,9 +101,14 @@ function SearchBar() {
         </Box>
       </Stack>
       <Box sx={{ width: "100%" }}>
-        <Typography textAlign={"center"} variant="h4">
-          {distance} nautical miles
+        <Typography textAlign={"center"} variant="h4" sx={{ m: "2rem" }}>
+          <span style={{ backgroundColor: "purple", padding: "10px" }}>
+            {distance} nautical miles
+          </span>
         </Typography>
+      </Box>
+      <Box sx={{ width: "100%" }}>
+        <MyGoogleMap departure={departureAirport} arrival={arrivalAirport} />
       </Box>
     </>
   );
