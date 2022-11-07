@@ -54,7 +54,7 @@ function MyGoogleMap({
           position={{ lat: departure.latitude, lng: departure.longitude }}
           icon={{
             url: iconURL + departureIcon,
-            scaledSize: { height: 48, width: 48 },
+            scaledSize: new google.maps.Size(48, 48), //{ height: 48, width: 48 },
             anchor: new google.maps.Point(8, 8),
           }}
         />
@@ -88,7 +88,7 @@ function MyGoogleMap({
               draggable: false,
               editable: false,
               visible: true,
-              radius: 30000,
+              //radius: 30000,
               zIndex: 1,
             }}
           />
@@ -96,7 +96,7 @@ function MyGoogleMap({
             position={{ lat: arrival.latitude, lng: arrival.longitude }}
             icon={{
               url: iconURL + arrivalIcon,
-              scaledSize: { height: 48, width: 48 },
+              scaledSize: new google.maps.Size(48, 48), // { height: 48, width: 48 },
               anchor: new google.maps.Point(8, 8),
             }}
           />
