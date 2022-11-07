@@ -7,7 +7,11 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
 import SearchBar from "../components/SearchBar";
-import { fetchAllAirportsFromJSON, AppDispatch } from "../store";
+import {
+  fetchAllAirportsFromJSON,
+  AppDispatch,
+  fetchAllAirports,
+} from "../store";
 import MyGoogleMap from "../components/MyGoogleMap";
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();
@@ -26,7 +30,8 @@ export default function Home() {
     //   console.log("DATA:", dt);
     // };
     // fetchData();
-    dispatch(fetchAllAirportsFromJSON());
+    // dispatch(fetchAllAirportsFromJSON());
+    dispatch(fetchAllAirports());
   }, []);
 
   return (

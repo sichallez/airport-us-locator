@@ -25,12 +25,17 @@ const _fetchAllAirports = (airports: any[]) => {
 };
 
 /* Thunk */
-export const fetchAllAirports = () => {
-  return async (dispatch: Dispatch<AnyAction>) => {
+export const fetchAllAirports = (): ThunkAction<
+  Promise<void>,
+  {},
+  {},
+  AnyAction
+> => {
+  return async (dispatch: ThunkDispatch<{}, {}, AnyAction>): Promise<void> => {
     const response = await axios.get("/api/us-airports");
     const airports = await response.data.data.response;
-    console.log("STORE STORE STORE:", airports);
-    dispatch(_fetchAllAirports(airports));
+    // console.log("STORE STORE STORE:", airports);
+    dispatch<any>(_fetchAllAirports(airports));
   };
 };
 

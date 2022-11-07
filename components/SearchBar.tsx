@@ -19,17 +19,25 @@ const initialAirport: InputAirport = {
 
 function SearchBar() {
   const airports: any = useSelector((state) => state);
-  //   const airportsNoduplicate = airports.filter(
-  //     (airport, index) =>
-  //       index === airports.findIndex((other) => airport.iata === other.iata)
-  //   );
-  const airportsNoduplicate = airports.slice(0, 20);
+
+  // filter out the duplicate data from the API call (where some airports have the same iata value)
+  const airportsNoduplicate = airports.reduce((prev: any, cur: any) => {
+    if (
+      !prev.some(function (el: any) {
+        return el.iata_code === cur.iata_code;
+      })
+    )
+      prev.push(cur);
+    return prev;
+  }, []);
+  // const airportsNoduplicate = airports.slice(0, 20);
+  // console.log("AIRPORTS:", airportsNoduplicate);
+
   const airportList = airportsNoduplicate.map((airport: any) =>
     airport.iata_code !== undefined
       ? `(${airport.iata_code}) ${airport.name}`
       : `(${airport.icao_code}) ${airport.name}`
   );
-  //   console.log("AIRPORTS:", airportsNoduplicate);
 
   const [distance, setDistance] = useState(0);
   const [departureAirport, setDepartureAirport] = useState(initialAirport);
