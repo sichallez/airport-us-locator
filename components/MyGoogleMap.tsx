@@ -6,6 +6,7 @@ import {
   // InfoWindow,
   useJsApiLoader,
 } from "@react-google-maps/api";
+import { InputAirport } from "../types";
 
 const defaultCenter = { lat: 39, lng: -98 };
 const path = [
@@ -21,7 +22,18 @@ const iconURL = "https://www.google.com/mapfiles/kml/paddle/";
 const departureIcon = "A.png";
 const arrivalIcon = "B.png";
 
-function MyGoogleMap({ departure, arrival }) {
+interface _MyGoogleMap {
+  departure: InputAirport;
+  arrival: InputAirport;
+}
+
+function MyGoogleMap({
+  departure,
+  arrival,
+}: {
+  departure: InputAirport;
+  arrival: InputAirport;
+}) {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: `${process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}`,

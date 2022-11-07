@@ -7,8 +7,9 @@ import Autocomplete from "@mui/material/Autocomplete";
 import Typography from "@mui/material/Typography";
 import { calcDistanceNautical } from "../utils";
 import MyGoogleMap from "./MyGoogleMap";
+import { InputAirport } from "../types";
 
-const initialAirport = {
+const initialAirport: InputAirport = {
   name: "",
   index: -1,
   latitude: 39,
