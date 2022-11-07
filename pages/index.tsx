@@ -7,6 +7,7 @@ import TextField from "@mui/material/TextField";
 import axios from "axios";
 import SearchBar from "../components/SearchBar";
 import { fetchAllAirportsFromJSON } from "../store";
+import MyGoogleMap from "../components/MyGoogleMap";
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -27,7 +28,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <SearchBar />
-
+      <MyGoogleMap />
       {/* <footer className={styles.footer}>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
