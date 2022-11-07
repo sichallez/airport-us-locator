@@ -5,7 +5,7 @@ export default async function handler(req: any, res: any) {
   //Find the absolute path of the json directory
   // const jsonDirectory = path.join(process.cwd(), "json");
   // Netlify doesn't recognize the path process.cwd(), so have to hard code the path..
-  const jsonDirectory = "json";
+  const jsonDirectory = "../../json";
   //Read the json data file data.json
   const fileContents = await fs.readFile(
     jsonDirectory + "/us-airports.json",
