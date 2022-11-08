@@ -1,7 +1,6 @@
 import { createStore, applyMiddleware, AnyAction } from "redux";
-import thunkMiddleware from "redux-thunk";
-import { Store } from "@reduxjs/toolkit";
-import { MakeStore, createWrapper, Context } from "next-redux-wrapper";
+import thunkMiddleware, { ThunkAction, ThunkDispatch } from "redux-thunk";
+import { createWrapper, Context } from "next-redux-wrapper";
 
 import axios from "axios";
 
@@ -18,21 +17,32 @@ const _fetchAllAirports = (airports: any[]) => {
 };
 
 /* Thunk */
-export const fetchAllAirports = () => {
-  return async (dispatch: AnyAction) => {
+
+// fetch airport database from external API
+export const fetchAllAirports = (): ThunkAction<
+  Promise<void>,
+  {},
+  {},
+  AnyAction
+> => {
+  return async (dispatch: ThunkDispatch<{}, {}, AnyAction>): Promise<void> => {
     const response = await axios.get("/api/us-airports");
     const airports = await response.data.data.response;
-    console.log("STORE STORE STORE:", airports);
-    dispatch(_fetchAllAirports(airports));
+    dispatch<any>(_fetchAllAirports(airports));
   };
 };
 
-export const fetchAllAirportsFromJSON = () => {
-  return async (dispatch: AnyAction) => {
+// fetch airport data from local JSON file
+export const fetchAllAirportsFromJSON = (): ThunkAction<
+  Promise<void>,
+  {},
+  {},
+  AnyAction
+> => {
+  return async (dispatch: ThunkDispatch<{}, {}, AnyAction>): Promise<void> => {
     const response = await axios.get("/api/staticdata");
     const airports = await JSON.parse(response.data).data.response;
-    // console.log("STORE STORE STORE:", airports);
-    dispatch(_fetchAllAirports(airports));
+    dispatch<any>(_fetchAllAirports(airports));
   };
 };
 
@@ -48,5 +58,7 @@ const reducer = (state = initialState, action: AnyAction) => {
 const store = createStore(reducer, applyMiddleware(thunkMiddleware));
 const makeStore = (context: Context) => store;
 const wrapper = createWrapper(makeStore, { debug: true });
+
+export type AppDispatch = typeof store.dispatch;
 
 export default wrapper;
