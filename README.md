@@ -17,7 +17,7 @@ This App is build with Next.js, React, MUI v5, Redux, Google Map API, AirLabs AP
 ## Netlify
 
 The application is deployed on Netlify at:
-https://63694a57dd331113ff60ed9b--magenta-lily-18fbbb.netlify.app/
+https://magenta-lily-18fbbb.netlify.app/
 
 ## Screenshots
 
