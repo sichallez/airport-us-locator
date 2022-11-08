@@ -52,6 +52,7 @@ export default function Home() {
             aria-label="help"
             size="large"
             href="https://github.com/sichallez/airport-us-locator"
+            target="_blank"
           >
             <GitHubIcon sx={{ color: "#00a698" }} />
             <Typography variant="h6" component="div">
