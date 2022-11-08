@@ -6,6 +6,7 @@ import styles from "../styles/Home.module.css";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import HelpIcon from "@mui/icons-material/Help";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
@@ -47,6 +48,16 @@ export default function Home() {
         sx={{ mb: "1rem", maxWidth: "1200px" }}
       >
         <Toolbar sx={{ justifyContent: "flex-end" }}>
+          <IconButton
+            aria-label="help"
+            size="large"
+            href="https://github.com/sichallez/airport-us-locator"
+          >
+            <GitHubIcon sx={{ color: "#00a698" }} />
+            <Typography variant="h6" component="div">
+              GitHub
+            </Typography>
+          </IconButton>
           <IconButton aria-label="help" size="large" onClick={handleClickOpen}>
             <HelpIcon sx={{ color: "#00a698" }} />
             <Typography variant="h6" component="div">
