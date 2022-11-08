@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
@@ -23,7 +22,6 @@ const StyledAutocomplete = styled(Autocomplete)({
   },
   "& .MuiAutocomplete-inputRoot": {
     color: "black",
-    // This matches the specificity of the default styles at https://github.com/mui-org/material-ui/blob/v4.11.3/packages/material-ui-lab/src/Autocomplete/Autocomplete.js#L90
     '&[class*="MuiOutlinedInput-root"] .MuiAutocomplete-input:first-of-type': {
       // Default left padding is 6px
       paddingLeft: 26,
@@ -61,8 +59,6 @@ function SearchBar() {
       prev.push(cur);
     return prev;
   }, []);
-  // const airportsNoduplicate = airports.slice(0, 20);
-  // console.log("AIRPORTS:", airportsNoduplicate);
 
   const airportList = airportsNoduplicate.map((airport: any) =>
     airport.iata_code !== undefined
@@ -119,7 +115,6 @@ function SearchBar() {
 
   return (
     <>
-      {/* <Stack direction="row" spacing={2}> */}
       <Grid
         container
         spacing={2}
@@ -165,7 +160,6 @@ function SearchBar() {
             }
           />
         </Grid>
-        {/* </Stack> */}
       </Grid>
       <Box sx={{ width: "100%" }}>
         <Typography textAlign={"center"} variant="h4" sx={{ m: "2rem" }}>

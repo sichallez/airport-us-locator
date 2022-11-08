@@ -3,16 +3,12 @@ import {
   Marker,
   Polyline,
   GoogleMap,
-  // InfoWindow,
   useJsApiLoader,
 } from "@react-google-maps/api";
 import { InputAirport } from "../types";
 
 const defaultCenter = { lat: 39, lng: -98 };
-const path = [
-  { lat: 41.978367, lng: -87.904712 },
-  { lat: 40.640655, lng: -73.781937 },
-];
+
 const containerStyle = {
   width: "100%",
   height: "70vh",
@@ -21,11 +17,6 @@ const containerStyle = {
 const iconURL = "https://www.google.com/mapfiles/kml/paddle/";
 const departureIcon = "A.png";
 const arrivalIcon = "B.png";
-
-interface _MyGoogleMap {
-  departure: InputAirport;
-  arrival: InputAirport;
-}
 
 function MyGoogleMap({
   departure,
@@ -46,7 +37,6 @@ function MyGoogleMap({
       zoom={4.5}
       options={{
         streetViewControl: false,
-        // mapTypeId: "satellite",
       }}
     >
       {departure.name !== "" ? (
@@ -88,7 +78,6 @@ function MyGoogleMap({
               draggable: false,
               editable: false,
               visible: true,
-              //radius: 30000,
               zIndex: 1,
             }}
           />
@@ -96,7 +85,7 @@ function MyGoogleMap({
             position={{ lat: arrival.latitude, lng: arrival.longitude }}
             icon={{
               url: iconURL + arrivalIcon,
-              scaledSize: new google.maps.Size(48, 48), // { height: 48, width: 48 },
+              scaledSize: new google.maps.Size(48, 48),
               anchor: new google.maps.Point(8, 8),
             }}
           />

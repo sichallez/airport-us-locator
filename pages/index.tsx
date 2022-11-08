@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { ThunkDispatch } from "redux-thunk";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import Box from "@mui/material/Box";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
 import HelpIcon from "@mui/icons-material/Help";
 import Grid from "@mui/material/Grid";
@@ -18,34 +16,16 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import axios from "axios";
 import SearchBar from "../components/SearchBar";
-import {
-  fetchAllAirportsFromJSON,
-  AppDispatch,
-  fetchAllAirports,
-} from "../store";
-import MyGoogleMap from "../components/MyGoogleMap";
+import { AppDispatch, fetchAllAirports } from "../store";
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 
 export default function Home() {
-  const [data, setData] = useState([]);
   const dispatch: ThunkDispatch<{}, {}, any> = useDispatch();
-  // const dispatch = useAppDispatch();
-
-  // console.log("DATADATADATA???", data);
 
   useEffect(() => {
-    // const fetchData = async () => {
-    //   const res = await axios.get("/api/us-airports");
-    //   const dt = await res.data;
-    //   console.log("DATA:", dt);
-    // };
-    // fetchData();
-    dispatch(fetchAllAirportsFromJSON());
-    // dispatch(fetchAllAirports());
+    dispatch(fetchAllAirports());
   }, []);
 
   const [open, setOpen] = React.useState(false);
@@ -111,7 +91,6 @@ export default function Home() {
       >
         <SearchBar />
       </Paper>
-      {/* <MyGoogleMap /> */}
       <footer className={styles.footer}>
         <Grid
           container
