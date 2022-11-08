@@ -8,7 +8,37 @@ import Typography from "@mui/material/Typography";
 import { calcDistanceNautical } from "../utils";
 import MyGoogleMap from "./MyGoogleMap";
 import { InputAirport } from "../types";
-import { AnyArray } from "immer/dist/internal";
+import { styled } from "@mui/material/styles";
+
+const StyledAutocomplete = styled(Autocomplete)({
+  "& .MuiInputLabel-outlined:not(.MuiInputLabel-shrink)": {
+    // Default transform is "translate(14px, 20px) scale(1)""
+    // This lines up the label with the initial cursor position in the input
+    // after changing its padding-left.
+    transform: "translate(34px, 20px) scale(1);",
+  },
+  "&.Mui-focused .MuiInputLabel-outlined": {
+    color: "purple",
+  },
+  "& .MuiAutocomplete-inputRoot": {
+    color: "black",
+    // This matches the specificity of the default styles at https://github.com/mui-org/material-ui/blob/v4.11.3/packages/material-ui-lab/src/Autocomplete/Autocomplete.js#L90
+    '&[class*="MuiOutlinedInput-root"] .MuiAutocomplete-input:first-of-type': {
+      // Default left padding is 6px
+      paddingLeft: 26,
+    },
+    "& .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#5C848E",
+    },
+    "&:hover .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#FF6D28",
+    },
+    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#FF6D28",
+      borderWidth: "3px",
+    },
+  },
+});
 
 const initialAirport: InputAirport = {
   name: "",
@@ -90,20 +120,38 @@ function SearchBar() {
     <>
       <Stack direction="row" spacing={2}>
         <Box sx={{ width: "100%" }}>
-          <Autocomplete
+          <StyledAutocomplete
             id="departure-airport"
             options={airportList}
-            renderInput={(params) => <TextField {...params} label="From" />}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="From"
+                InputLabelProps={{
+                  shrink: true,
+                  style: { fontSize: 18, color: "black", fontWeight: "600" },
+                }}
+              />
+            )}
             onInputChange={(event: any, newValue: string) =>
               handleDpartureChange(newValue)
             }
           />
         </Box>
         <Box sx={{ width: "100%" }}>
-          <Autocomplete
+          <StyledAutocomplete
             id="arrival-airport"
             options={airportList}
-            renderInput={(params) => <TextField {...params} label="To" />}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="To"
+                InputLabelProps={{
+                  shrink: true,
+                  style: { fontSize: 18, color: "black", fontWeight: "600" },
+                }}
+              />
+            )}
             onInputChange={(event: any, newValue: string) =>
               handleArrivalChange(newValue)
             }
@@ -112,7 +160,14 @@ function SearchBar() {
       </Stack>
       <Box sx={{ width: "100%" }}>
         <Typography textAlign={"center"} variant="h4" sx={{ m: "2rem" }}>
-          <span style={{ backgroundColor: "purple", padding: "10px" }}>
+          <span
+            style={{
+              backgroundColor: "#6F38C5",
+              borderRadius: "10px",
+              padding: "10px 30px",
+              color: "white",
+            }}
+          >
             {distance} nautical miles
           </span>
         </Typography>

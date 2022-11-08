@@ -70,7 +70,7 @@ function MyGoogleMap({
             ]}
             options={{
               geodesic: true,
-              strokeColor: "#008ECC",
+              strokeColor: "#bf521f",
               strokeOpacity: 0,
               strokeWeight: 2,
               icons: [
