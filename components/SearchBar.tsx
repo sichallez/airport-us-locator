@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
+import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import Typography from "@mui/material/Typography";
@@ -118,8 +119,15 @@ function SearchBar() {
 
   return (
     <>
-      <Stack direction="row" spacing={2}>
-        <Box sx={{ width: "100%" }}>
+      {/* <Stack direction="row" spacing={2}> */}
+      <Grid
+        container
+        spacing={2}
+        direction={{ xs: "column", md: "row" }}
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Grid item xs={6}>
           <StyledAutocomplete
             id="departure-airport"
             options={airportList}
@@ -137,8 +145,8 @@ function SearchBar() {
               handleDpartureChange(newValue)
             }
           />
-        </Box>
-        <Box sx={{ width: "100%" }}>
+        </Grid>
+        <Grid item xs={6}>
           <StyledAutocomplete
             id="arrival-airport"
             options={airportList}
@@ -156,8 +164,9 @@ function SearchBar() {
               handleArrivalChange(newValue)
             }
           />
-        </Box>
-      </Stack>
+        </Grid>
+        {/* </Stack> */}
+      </Grid>
       <Box sx={{ width: "100%" }}>
         <Typography textAlign={"center"} variant="h4" sx={{ m: "2rem" }}>
           <span

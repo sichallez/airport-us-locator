@@ -10,8 +10,9 @@ This App is build with Next.js, React, MUI v5, Redux, Google Map API, AirLabs AP
 - [Next.js](https://nextjs.org/)
 - [AirLabs Airport Database API](https://airlabs.co/docs/airports)
 - [MUI v5](https://mui.com/)
-- [React Google Maps Api](https://react-google-maps-api-docs.netlify.app/)
+- [React Google Maps API](https://react-google-maps-api-docs.netlify.app/)
 - [Redux](https://redux.js.org/)
+- [TypeScript](https://www.typescriptlang.org/)
 
 ## Netlify
 

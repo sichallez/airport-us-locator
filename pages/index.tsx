@@ -35,8 +35,6 @@ export default function Home() {
   const dispatch: ThunkDispatch<{}, {}, any> = useDispatch();
   // const dispatch = useAppDispatch();
 
-  const [showPopup, setShowPopup] = useState(false);
-
   // console.log("DATADATADATA???", data);
 
   useEffect(() => {

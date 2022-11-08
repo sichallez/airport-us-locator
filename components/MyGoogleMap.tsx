@@ -54,7 +54,7 @@ function MyGoogleMap({
           position={{ lat: departure.latitude, lng: departure.longitude }}
           icon={{
             url: iconURL + departureIcon,
-            scaledSize: new google.maps.Size(48, 48), //{ height: 48, width: 48 },
+            scaledSize: new google.maps.Size(48, 48),
             anchor: new google.maps.Point(8, 8),
           }}
         />
