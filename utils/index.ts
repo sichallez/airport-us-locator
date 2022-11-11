@@ -15,7 +15,7 @@ export function calcDistanceNautical(
         Math.cos(phi1) * Math.cos(phi2) * Math.cos(dLambda)
     ) * R;
 
-  return distance;
+  return Math.round(distance * 10) / 10;
 }
 
 export function deg2rad(deg: number) {
