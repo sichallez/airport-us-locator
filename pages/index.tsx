@@ -45,8 +45,8 @@ export default function Home() {
     //   console.log("DATA:", dt);
     // };
     // fetchData();
-    dispatch(fetchAllAirportsFromJSON());
-    // dispatch(fetchAllAirports());
+    // dispatch(fetchAllAirportsFromJSON());
+    dispatch(fetchAllAirports());
   }, []);
 
   const [open, setOpen] = React.useState(false);

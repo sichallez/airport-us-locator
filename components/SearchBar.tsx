@@ -51,6 +51,8 @@ const initialAirport: InputAirport = {
 function SearchBar() {
   const airports: any = useSelector((state) => state);
 
+  console.log("AIRPORTS:", airports);
+
   // filter out the duplicate data from the API call (where some airports have the same iata value)
   const airportsNoduplicate = airports.reduce((prev: any, cur: any) => {
     if (
